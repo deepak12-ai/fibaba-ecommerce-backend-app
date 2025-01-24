@@ -60,7 +60,7 @@ router.get('/admin-stats', async (req, res) => {
                 totalEarning: {$sum: '$amount'}
             }}
         ])
-        const totalEarning = totalEarningResult.length > 0 ? totalEarningResult[0].totalEarning : 0;
+        const totalEarning = totalEarningResult.length > 0 ?  parseFloat(totalEarningResult[0].totalEarning.toFixed(2)) : 0;
 
         const monthlyEarningResult = await Order.aggregate([
             {
@@ -76,7 +76,7 @@ router.get('/admin-stats', async (req, res) => {
         const monthlyEarning = monthlyEarningResult.map((entry) => ({
             month: entry._id.month,
             year: entry._id.year,
-            earnings: entry.monthlyEarnings.toFixed(2)
+            earnings: parseFloat(entry.monthlyEarnings.toFixed(2)),
         }))
         res.status(200).json({
             totalOrders,
