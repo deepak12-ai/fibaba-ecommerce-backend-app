@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin:'https://fibaba-frontend-final-file.vercel.app',
+    origin:'https://fibaba-frontend-final.vercel.app',
     credentials: true
 }))
 // all routes
